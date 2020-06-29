@@ -6,37 +6,35 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
     [SerializeField] GameObject follow;
-    [SerializeField] float speed = 1f;
+    [SerializeField] float innerRadius = 5f;
     [SerializeField] float rotationSpeed = 5f;
+    [SerializeField] float speedFactor = 1f;
     [SerializeField] float offsetX = 2f;
     [SerializeField] float offsetY = 1f;
 
+    private float _speed;
     private Vector3 _velocity;
     private Quaternion _lookRotation;
     // Start is called before the first frame update
     void Start()
     {
-        var followTransform = follow.transform;
-
-        var posFollow = follow.transform.position;
-        var pos = posFollow;
+        var pos = follow.transform.position;
         pos.y += offsetY;
         pos.x += offsetX;
         transform.position = pos;
 
-        var asin = Mathf.Acos(offsetY / offsetX);
-        var rotZ = asin * Mathf.Rad2Deg;
+        _speed = (innerRadius + offsetY) * (rotationSpeed * Mathf.Deg2Rad) * speedFactor;
+
+        var rotZ = Mathf.Atan2(offsetY, offsetX) * Mathf.Rad2Deg;
         _lookRotation = Quaternion.AngleAxis(-rotZ, Vector3.right);
         transform.Rotate(Vector3.right, rotZ, Space.Self);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        //transform.SetPositionAndRotation(pos, transform.rotation);
-      
         transform.Rotate(transform.right, rotationSpeed * Time.deltaTime, Space.World);
         
-        _velocity = Vector3.forward * (speed * Time.deltaTime);
+        _velocity = Vector3.forward * (_speed * Time.deltaTime);
         _velocity = _lookRotation * _velocity;
         
         transform.Translate(_velocity, Space.Self);
