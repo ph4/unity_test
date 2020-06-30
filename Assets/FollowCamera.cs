@@ -14,7 +14,9 @@ public class FollowCamera : MonoBehaviour
 
     private float _speed;
     private Vector3 _velocity;
+
     private Quaternion _lookRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +35,10 @@ public class FollowCamera : MonoBehaviour
     private void Update()
     {
         transform.Rotate(transform.right, rotationSpeed * Time.deltaTime, Space.World);
-        
+
         _velocity = Vector3.forward * (_speed * Time.deltaTime);
         _velocity = _lookRotation * _velocity;
-        
+
         transform.Translate(_velocity, Space.Self);
     }
 }
