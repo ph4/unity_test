@@ -44,7 +44,7 @@ namespace Inputs
                 if (_inputVector.magnitude > 1f)
                     _inputVector.Normalize();
 
-                Debug.Log(_inputVector);
+                //Debug.Log(_inputVector);
 
                 _joyImg.rectTransform.anchoredPosition = new Vector2(
                     _inputVector.x * sizeDelta.x / 2,

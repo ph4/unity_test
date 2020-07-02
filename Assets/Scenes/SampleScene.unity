@@ -606,9 +606,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSphere: {fileID: 1979338082}
-  input: {fileID: 1075799865}
-  height: 2
-  speed: 6
+  orbiterConfig: {fileID: 11400000, guid: edacf5a28fe0e4b4592a698e1f13cde8, type: 2}
+  vInput: {fileID: 1075799865}
 --- !u!135 &1743257534
 SphereCollider:
   m_ObjectHideFlags: 0
