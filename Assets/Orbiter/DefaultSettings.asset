@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   radius: 8
-  turnSpeed: 10
+  turnSpeed: 220
+  rotate: 1

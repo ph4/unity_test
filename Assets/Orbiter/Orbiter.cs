@@ -17,7 +17,10 @@ namespace Orbiter
 
         private void Awake()
         {
-            _orbiterController = new OrbiterController(vInput, transform, orbiterConfig);
+            var trans = transform;
+            _orbiterController = orbiterConfig.Rotate ?
+                 new OrbiterControllerRotate(vInput, trans, orbiterConfig) : 
+                (OrbiterControllerBase) new OrbiterController(vInput, trans, orbiterConfig);
         }
 
         // Start is called before the first frame update
